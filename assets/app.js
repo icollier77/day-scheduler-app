@@ -5,13 +5,13 @@ $("#currentDay").text(today);
 // get the current time
 const currentTime = parseInt(dayjs().format('H'));
 
-// get all blocks with class 'hour'
-// extract their IDs and compare their numeric values to currentTime
-// dynamically assign styling classes
-const hourBlocks = $('.hour');
+
+
+// ----- Assign color to input blocks for Past, Present, Future ---------
+const hourBlocks = $('.hour');   // get all blocks with class 'hour'
 hourBlocks.each(function() {
-    let blockHour = parseInt($(this).attr('id'));
-    if (blockHour < currentTime) {
+    let blockHour = parseInt($(this).attr('id')); // extract their IDs and compare their numeric values to currentTime
+    if (blockHour < currentTime) {   // dynamically assign styling classes
         $(this).next().addClass('past');
     } else if (blockHour === currentTime) {
         $(this).next().addClass('present');
@@ -21,13 +21,16 @@ hourBlocks.each(function() {
 });
 
 
-// TODO: Allow a user to enter an event when they click a timeblock
-// create 
-// add click event (through delegation) on buttons
+// TODO: Allow a user to enter an event when they click a timeblock ????
+// ------- Enter an event when a user clicks a timeblock -------
 // function addTask() {
-    $('.container').on('click', 'button.saveBtn', function(event) {
-    let hourInput = $(this).prev().val();
-    console.log(typeof hourInput);
+    $('.container').on('click', 'button.saveBtn', function() {     // add click event (through delegation) on buttons
+        let itemsList = JSON.parse(localStorage.getItem('savedList')) || [];
+        let taskInput = $(this).prev().val();
+        let hourValue = parseInt($(this).prev().prev().attr('id'));
+        let newInput = {hour: hourValue, item: taskInput};
+        itemsList.push(newInput);
+        localStorage.setItem('savedList', JSON.stringify(itemsList));
     });
 // };
 
