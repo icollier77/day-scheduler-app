@@ -3,18 +3,23 @@ const today = dayjs().format('dddd, D MMM YYYY');
 console.log(today);
 $("#currentDay").text(today);
 
-
-// TODO: Color-code each timeblock based on past, present, and future when the timeblock is viewed.
 // get the current time
-const currentTime = dayjs().format('H');
-console.log(currentTime);
+const currentTime = parseInt(dayjs().format('H'));
 
-// compare currentTime with all 
+// get all blocks with class 'hour'
+// extract their IDs and compare their numeric values to currentTime
+// dynamically assign styling classes
 const hourBlocks = $('.hour');
-console.log(hourBlocks);
-
-hourBlocks.each(hour => {
-    console.log(hour.attr('id'));
+hourBlocks.each(function() {
+    let blockHour = parseInt($(this).attr('id'));
+    console.log(blockHour, typeof blockHour);
+    if (blockHour < currentTime) {
+        $(this).next().addClass('past');
+    } else if (blockHour === currentTime) {
+        $(this).next().addClass('present');
+    } else if (blockHour > currentTime) {
+        $(this).next().addClass('future');
+    }
 })
 
 
