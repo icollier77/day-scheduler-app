@@ -25,9 +25,9 @@ hourBlocks.each(function() {
 // create 
 // add click event (through delegation) on buttons
 // function addTask() {
-    $('.container').on('click', 'button', function(event) {
+    $('.container').on('click', 'button.saveBtn', function(event) {
     let hourInput = $(this).prev().val();
-    
+    console.log(typeof hourInput);
     });
 // };
 
