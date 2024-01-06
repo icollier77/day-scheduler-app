@@ -2,9 +2,12 @@
 const today = dayjs().format('dddd, D MMM YYYY');
 $("#currentDay").text(today);
 
-// TODO: problem - this creates an initial delay of 5 seconds
+// ---- Run the screen functions ------
+assignColors();
+checkTime();
+
 // ----- Assign color to input blocks for Past, Present, Future ---------
-const checkTime = setInterval(function() {
+const assignColors = () => {
     const currentTime = parseInt(dayjs().format('H'));  // get the current time
     const hourBlocks = $('.hour');   // get all blocks with class 'hour'
     hourBlocks.each(function() {
@@ -17,14 +20,14 @@ const checkTime = setInterval(function() {
             $(this).next().addClass('future');
         };
     });
-}, 5000)  // check time & re-assign color every 5 sec
+};
 
+// -------- Check time every 5 seconds and re-assign colors
+const checkTime = setInterval(function() {
+    assignColors;
+}, 5000) 
 
-
-
-
-
-// TODO: Allow a user to enter an event when they click a timeblock ????
+// TODO: should this be inside a function? Why?
 // ------- Enter an event when a user clicks a timeblock -------
 // function addTask() {
     $('.container').on('click', 'button.saveBtn', function() {     // add click event (through delegation) on buttons
@@ -38,6 +41,6 @@ const checkTime = setInterval(function() {
 // };
 
 
-// TODO: Save the event in local storage when the save button is clicked in that timeblock.
-
 // TODO: Persist events between refreshes of a page
+// extract values from local storage into an array
+const itemsArray = JSON.parse(localStorage.getItem('savedList'));
