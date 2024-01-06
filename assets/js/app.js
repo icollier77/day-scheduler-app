@@ -46,14 +46,18 @@ function addTask() {
 // ---- extract existing schedule and display --------
 function getSchedule() {
     const itemsArray = JSON.parse(localStorage.getItem('savedList'));   // extract values from local storage into an array
+    console.log(itemsArray);
+    // console.log(itemsArray.length);
     const hourBlocks = $('.hour');   // get all blocks with class 'hour'
-    hourBlocks.each(function() {
-        let blockHour = parseInt($(this).attr('id')); // extract their IDs
-        // TODO: is there a better way? Big O notation
-        for (i = 0; i < itemsArray.length; i++) {
-            if (blockHour === itemsArray[i].hour){
-                $(this).next().text(itemsArray[i].item);
+    if (itemsArray) {
+        hourBlocks.each(function() {
+            let blockHour = parseInt($(this).attr('id')); // extract their IDs
+            // TODO: is there a better way? Big O notation
+            for (i = 0; i < itemsArray.length; i++) {
+                if (blockHour === itemsArray[i].hour){
+                    $(this).next().text(itemsArray[i].item);
+                };
             };
-        };
-    });
+        });
+    };
 };
