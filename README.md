@@ -108,9 +108,9 @@ Overall, it was an interesting project: seemingly easy but at times challenging.
 
 ### jQuery 3.0
 
-The common advice for jQuery is to include `$(document).ready(function(){}` at the start of the code. However, the [documentation for jQuery 3.0][jquery-ready-url] specifies that this synthax is depreciate and is no longer necessary. The recommended way of calling is `$(function() {})`.
+The common advice for jQuery is to include `$(document).ready(function(){}` at the start of the code. However, the [documentation for jQuery 3.0][jquery-ready-url] specifies that this synthax is deprecated and is **no longer necessary**.
 
-This is why I did not use `$(document).ready()` in my code.
+The **recommended way of calling** is simply `$(function(){})`. This is why I used this more simplified code in my script.
 
 ### Nested loops
 

@@ -1,12 +1,15 @@
-// ---- Display the current day at the top of the calendar when a user opens the planner.
+// START THE CODE
+// this synthax replaces the deprecates $(document).ready(function(){}) synthax in jQuery 3.0
+$(function() {
+    // ---- Display the current day at the top of the calendar when a user opens the planner.
 const today = dayjs().format('dddd, D MMM YYYY');
 $("#currentDay").text(today);
-
 // ---- Run the screen functions ------
 assignColors();
 getSchedule();
 checkTime();
 addTask();
+})
 
 // ----- Assign color to input blocks for Past, Present, Future ---------
 function assignColors() {
