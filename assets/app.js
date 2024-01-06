@@ -1,24 +1,27 @@
-// Display the current day at the top of the calender when a user opens the planner.
+// ---- Display the current day at the top of the calendar when a user opens the planner.
 const today = dayjs().format('dddd, D MMM YYYY');
 $("#currentDay").text(today);
 
-// get the current time
-const currentTime = parseInt(dayjs().format('H'));
-
-
-
+// TODO: problem - this creates an initial delay of 5 seconds
 // ----- Assign color to input blocks for Past, Present, Future ---------
-const hourBlocks = $('.hour');   // get all blocks with class 'hour'
-hourBlocks.each(function() {
-    let blockHour = parseInt($(this).attr('id')); // extract their IDs and compare their numeric values to currentTime
-    if (blockHour < currentTime) {   // dynamically assign styling classes
-        $(this).next().addClass('past');
-    } else if (blockHour === currentTime) {
-        $(this).next().addClass('present');
-    } else if (blockHour > currentTime) {
-        $(this).next().addClass('future');
-    };
-});
+const checkTime = setInterval(function() {
+    const currentTime = parseInt(dayjs().format('H'));  // get the current time
+    const hourBlocks = $('.hour');   // get all blocks with class 'hour'
+    hourBlocks.each(function() {
+        let blockHour = parseInt($(this).attr('id')); // extract their IDs
+        if (blockHour < currentTime) {   // compare IDs to currentTime
+            $(this).next().addClass('past');  // assign styling classes
+        } else if (blockHour === currentTime) {
+            $(this).next().addClass('present');
+        } else if (blockHour > currentTime) {
+            $(this).next().addClass('future');
+        };
+    });
+}, 5000)  // check time & re-assign color every 5 sec
+
+
+
+
 
 
 // TODO: Allow a user to enter an event when they click a timeblock ????
