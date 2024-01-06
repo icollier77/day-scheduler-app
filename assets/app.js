@@ -5,9 +5,11 @@ $("#currentDay").text(today);
 // ---- Run the screen functions ------
 assignColors();
 checkTime();
+addTask();
+
 
 // ----- Assign color to input blocks for Past, Present, Future ---------
-const assignColors = () => {
+function assignColors() {
     const currentTime = parseInt(dayjs().format('H'));  // get the current time
     const hourBlocks = $('.hour');   // get all blocks with class 'hour'
     hourBlocks.each(function() {
@@ -23,13 +25,15 @@ const assignColors = () => {
 };
 
 // -------- Check time every 5 seconds and re-assign colors
-const checkTime = setInterval(function() {
-    assignColors;
-}, 5000) 
+function checkTime(){
+    const timer = setInterval(() => {
+        assignColors;
+    }, 5000);
+}
 
-// TODO: should this be inside a function? Why?
+
 // ------- Enter an event when a user clicks a timeblock -------
-// function addTask() {
+function addTask() {
     $('.container').on('click', 'button.saveBtn', function() {     // add click event (through delegation) on buttons
         let itemsList = JSON.parse(localStorage.getItem('savedList')) || [];
         let taskInput = $(this).prev().val();
@@ -38,9 +42,14 @@ const checkTime = setInterval(function() {
         itemsList.push(newInput);
         localStorage.setItem('savedList', JSON.stringify(itemsList));
     });
-// };
+};
 
 
 // TODO: Persist events between refreshes of a page
 // extract values from local storage into an array
 const itemsArray = JSON.parse(localStorage.getItem('savedList'));
+
+
+
+
+
