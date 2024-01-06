@@ -35,12 +35,12 @@ function checkTime(){
 // ------- Enter an event when a user clicks a timeblock -------
 function addTask() {
     $('.container').on('click', 'button.saveBtn', function() {     // add click event (through delegation) on buttons
-        let itemsList = JSON.parse(localStorage.getItem('savedList')) || [];
-        let taskInput = $(this).prev().val();
-        let hourValue = parseInt($(this).prev().prev().attr('id'));
-        let newInput = {hour: hourValue, item: taskInput};
-        itemsList.push(newInput);
-        localStorage.setItem('savedList', JSON.stringify(itemsList));
+        let itemsList = JSON.parse(localStorage.getItem('savedList')) || []; // extract items array from local storage or create it
+        let taskInput = $(this).prev().val();   // extract user's input from textarea
+        let hourValue = parseInt($(this).prev().prev().attr('id'));  // extract id from the hour div
+        let newInput = {hour: hourValue, item: taskInput};  // create a new record object
+        itemsList.push(newInput);    // add record to the array
+        localStorage.setItem('savedList', JSON.stringify(itemsList)); // convert to json and add to local storage
     });
 };
 
