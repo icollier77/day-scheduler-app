@@ -25,7 +25,7 @@ function assignColors() {
 };
 
 // -------- Check time every 5 seconds and re-assign colors
-function checkTime(){
+function checkTime() {
     const timer = setInterval(() => {
         assignColors;
     }, 5000);
