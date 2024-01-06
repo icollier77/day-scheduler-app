@@ -4,9 +4,9 @@ $("#currentDay").text(today);
 
 // ---- Run the screen functions ------
 assignColors();
+getSchedule();
 checkTime();
 addTask();
-
 
 // ----- Assign color to input blocks for Past, Present, Future ---------
 function assignColors() {
@@ -31,7 +31,6 @@ function checkTime(){
     }, 5000);
 }
 
-
 // ------- Enter an event when a user clicks a timeblock -------
 function addTask() {
     $('.container').on('click', 'button.saveBtn', function() {     // add click event (through delegation) on buttons
@@ -44,12 +43,17 @@ function addTask() {
     });
 };
 
-
-// TODO: Persist events between refreshes of a page
-// extract values from local storage into an array
-const itemsArray = JSON.parse(localStorage.getItem('savedList'));
-
-
-
-
-
+// ---- extract existing schedule and display --------
+function getSchedule() {
+    const itemsArray = JSON.parse(localStorage.getItem('savedList'));   // extract values from local storage into an array
+    const hourBlocks = $('.hour');   // get all blocks with class 'hour'
+    hourBlocks.each(function() {
+        let blockHour = parseInt($(this).attr('id')); // extract their IDs
+        // TODO: is there a better way? Big O notation
+        for (i = 0; i < itemsArray.length; i++) {
+            if (blockHour === itemsArray[i].hour){
+                $(this).next().text(itemsArray[i].item);
+            };
+        };
+    });
+};
