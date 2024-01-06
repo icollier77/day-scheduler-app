@@ -10,7 +10,7 @@ addTask();
 
 // ----- Assign color to input blocks for Past, Present, Future ---------
 function assignColors() {
-    const currentTime = parseInt(dayjs().format('H'));  // get the current time
+    const currentTime = parseInt(dayjs().hour());  // get the current time
     const hourBlocks = $('.hour');   // get all blocks with class 'hour'
     hourBlocks.each(function() {
         let blockHour = parseInt($(this).attr('id')); // extract their IDs
@@ -31,7 +31,7 @@ function checkTime() {
     }, 5000);
 }
 
-// ------- Enter an event when a user clicks a timeblock -------
+// ------- Add a new calendar item to local storage -------
 function addTask() {
     $('.container').on('click', 'button.saveBtn', function() {     // add click event (through delegation) on buttons
         let itemsList = JSON.parse(localStorage.getItem('savedList')) || []; // extract items array from local storage or create it
@@ -50,7 +50,6 @@ function getSchedule() {
         const hourBlocks = $('.hour');   // get all blocks with class 'hour'
         hourBlocks.each(function() {     
             let blockHour = parseInt($(this).attr('id')); // extract hour IDs
-            // TODO: is there a better way? Big O notation
             for (i = 0; i < itemsArray.length; i++) {     // compare hour ID with hour values in stored array
                 if (blockHour === itemsArray[i].hour){
                     $(this).next().text(itemsArray[i].item);   // display stored item in textarea
