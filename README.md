@@ -41,6 +41,10 @@ Assignment 7 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a day p
       </ul>
     </li>
     <li><a href="#development">Development</a></li>
+      <ul>
+        <li><a href="#jquery-30">jQuery 3.0</a></li>
+        <li><a href="#nested-loops">Nested loops</a></li>
+      </ul>
     <li><a href="#deployed-project">Deployed Project</a></li>
       <ul>
         <li><a href="#deployed-application">Deployed Application</a></li>
@@ -53,7 +57,7 @@ Assignment 7 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a day p
 ## About The Project
 
 ### Project Goal
-The goal of this project is to practice jQuery, web APIs (through the use of [Day.js][dayjs-url]) and local storage.
+The goal of this project is to practice jQuery, web APIs (specifically [Day.js][dayjs-url]) and local storage.
 
 ### Project Specifications
 
@@ -102,7 +106,21 @@ I ran into a few blocks related to Bootstrap and jQuery. During the class on 5 J
 
 Overall, it was an interesting project: seemingly easy but at times challenging. Luckily, I was able to leverage the functionality for storing and extracting data in local storage from my previous project, a [quiz app][quiz-app-url].
 
+### jQuery 3.0
+
+The common advice for jQuery is to include `$(document).ready(function(){}` at the start of the code. However, the [documentation for jQuery 3.0][jquery-ready-url] specifies that this synthax is depreciate and is no longer necessary. The recommended way of calling is `$(function() {})`.
+
+This is why I did not use `$(document).ready()` in my code.
+
+### Nested loops
+
 The biggest challenge I encountered (in terms of impact on the code quality) is the issue of a nested loop which would negatively affect the Big O notation of the code.
+
+* I have researched this topic further and found the answer that it really depends on the size of dataset. For small datasets it is entirely acceptable to have nested loops, as noted in this [discussion on StackOverflow][stackoverflow-url].
+* Further, [another article][medium-url] suggested that a nested loop can be replaced with a more optimized code but at the expense of code readability, therefore making the code less "clean".
+* Finally, it seems that one of the ways to replace a nested loop involves a [hashmap][hashmap-url], and I am not yet familiar with this data structure.
+
+For all the reasons above, I decided to keep the nested loop in my code.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,8 +151,7 @@ You can find the Day Planner app and its corresponding code here:
 - <a href="https://www.flaticon.com/free-icons/journal" title="journal icons" target="_blank">Journal icons created by Freepik - Flaticon</a>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- TODO: add gif of deployed project -->
-[deployed-gif]: 
+[deployed-gif]: ./images/deployed-page.gif
 
 [deployed-url]: https://icollier77.github.io/day-scheduler-app/
 
@@ -161,3 +178,11 @@ You can find the Day Planner app and its corresponding code here:
 [martin-url]: https://github.com/MartinSWDev
 
 [quiz-app-url]: https://github.com/icollier77/life-in-uk-quiz
+
+[jquery-ready-url]: https://api.jquery.com/ready/
+
+[stackoverflow-url]: https://stackoverflow.com/questions/48411581/how-to-avoid-for-loop-inside-for-loop-in-javascript
+
+[medium-url]: https://medium.com/geekculture/javascript-101-optimizing-your-loops-e63e49fe9a59
+
+[hashmap-url]: https://stackoverflow.com/questions/48589552/whats-the-best-way-to-optimize-these-nested-for-loops-used-to-create-a-hashmap
